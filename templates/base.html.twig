@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+<header class="header-top header-home">
+    <div class="overlay">
+
+        <nav class="main-menu">
+
+            <a href="index.html">
+                <img src="{{ asset('build/images/logo-small.png') }}" alt="Cooking Chef" class="logo-nav">
+            </a>
+
+            <ul>
+                <li><a href="#"><i class="fa fa-cutlery"></i> Recettes</a></li>
+                <li><a href="#"><i class="fa fa-video-camera"></i> Vidéos</a></li>
+                <li><a href="#"><i class="fa fa-sign-in"></i> Log in</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="container">
+            <div class="logo-home">
+                <img src="{{ asset('build/images/logo.png') }}" alt="Cooking Chef">
+            </div>
+            <form>
+                <input type="text" placeholder="Recette">
+                <select>
+                    <option disabled selected>Catégorie</option>
+                    <option>Entrée</option>
+                    <option>Plat</option>
+                    <option>Dessert</option>
+                </select>
+                <input type="submit" value="Rechercher">
+            </form>
+            <p>Cooking chef est le site internet pour Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veritatis fugit, quae veniam culpa nam harum sed qui, libero obcaecati enim praesentium est id
+                consequatur voluptatem doloribus perspiciatis saepe ratione at!</p>
+        </div>
+
+    </div>
+
+</header>
+
+{% block body %}{% endblock %}
+
+<footer class="site-footer">
+    © Cooking Chef 2016
+</footer>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>

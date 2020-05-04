@@ -1,6 +1,79 @@
-{%  extends "base.html.twig" %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Page d'accueil</h1>
+
+    <main class="container container-home">
+
+        <h1>Découvrez nos dernières recettes Cooking Chef !</h1>
+        <p>
+            Parcourez nos 284 recettes...
+        </p>
+
+        <section class="row recipes">
+
+            <div class="col-md-4">
+                <article>
+                    <a href="recipe-1.html">
+                        <img src="images/recipe-1.jpg" alt="Poulet mariné" class="img-responsive">
+                    </a>
+                    <h2><a href="recipe-1.html">Poulet mariné</a></h2>
+                    Recette classique du poulet mariné...
+                    <footer>
+                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 12</div>
+                        <div class="label"><i class="fa fa-cutlery"></i> Plat</div>
+                        <div class="label"><i class="fa fa-user"></i> François P.</div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article>
+                    <a href="#">
+                        <img src="images/recipe-2.jpg" alt="Poulet mariné" class="img-responsive">
+                    </a>
+                    <h2><a href="#">Pancake chocolat banane</a></h2>
+                    Délicieux pancake à la banane et au chocolat.
+                    <footer>
+                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
+                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
+                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article>
+                    <a href="#">
+                        <img src="images/recipe-3.jpg" alt="Poulet mariné" class="img-responsive">
+                    </a>
+                    <h2><a href="#">Poulet mariné</a></h2>
+                    Recette classique du poulet mariné...
+                    <footer>
+                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
+                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
+                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article>
+                    <a href="#">
+                        <img src="images/recipe-4.jpg" alt="Poulet mariné" class="img-responsive">
+                    </a>
+                    <h2><a href="#">Poulet mariné</a></h2>
+                    Recette classique du poulet mariné...
+                    <footer>
+                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
+                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
+                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
+                    </footer>
+                </article>
+            </div>
+
+        </section>
+
+    </main>
 
 {% endblock %}
+
