@@ -11,65 +11,21 @@
 
         <section class="row recipes">
 
-            <div class="col-md-4">
-                <article>
-                    <a href="recipe-1.html">
-                        <img src="{{ asset('build/images/recipe-1.jpg') }}" alt="Poulet mariné" class="img-responsive">
-                    </a>
-                    <h2><a href="{{ asset('build/images/recipe-1.jpg') }}">Poulet mariné</a></h2>
-                    Recette classique du poulet mariné...
-                    <footer>
-                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 12</div>
-                        <div class="label"><i class="fa fa-cutlery"></i> Plat</div>
-                        <div class="label"><i class="fa fa-user"></i> François P.</div>
-                    </footer>
-                </article>
-            </div>
-
-            <div class="col-md-4">
-                <article>
-                    <a href="#">
-                        <img src="images/recipe-2.jpg" alt="Poulet mariné" class="img-responsive">
-                    </a>
-                    <h2><a href="#">Pancake chocolat banane</a></h2>
-                    Délicieux pancake à la banane et au chocolat.
-                    <footer>
-                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
-                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
-                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
-                    </footer>
-                </article>
-            </div>
-
-            <div class="col-md-4">
-                <article>
-                    <a href="#">
-                        <img src="images/recipe-3.jpg" alt="Poulet mariné" class="img-responsive">
-                    </a>
-                    <h2><a href="#">Poulet mariné</a></h2>
-                    Recette classique du poulet mariné...
-                    <footer>
-                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
-                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
-                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
-                    </footer>
-                </article>
-            </div>
-
-            <div class="col-md-4">
-                <article>
-                    <a href="#">
-                        <img src="images/recipe-4.jpg" alt="Poulet mariné" class="img-responsive">
-                    </a>
-                    <h2><a href="#">Poulet mariné</a></h2>
-                    Recette classique du poulet mariné...
-                    <footer>
-                        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
-                        <div class="label"><i class="fa fa-cutlery"></i> Desert</div>
-                        <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
-                    </footer>
-                </article>
-            </div>
+            {% for recipe in recipes %}
+                <div class="col-md-4">
+                    <article>
+                        <a href="recipe-1.html">
+                            <img src="{{ asset('uploads/' ~ recipe.picture) }}" alt="{{ recipe.title }}" class="img-responsive">
+                        </a>
+                        <h2><a href="recipe-1.html">{{ recipe.title }}</a></h2>
+                        <footer>
+                            <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 12</div>
+                            <div class="label"><i class="fa fa-cutlery"></i> {{ recipe.category.label }}</div>
+                            <div class="label"><i class="fa fa-user"></i> François P.</div>
+                        </footer>
+                    </article>
+                </div>
+            {% endfor %}
 
         </section>
 
