@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipe{% endblock %}
+{% block title %}{{ parent() }} - {{ recipe.title }}{% endblock %}
 
 {% block body %}
 
@@ -14,6 +14,10 @@
                 <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
             </div>
             <div class="col-md-4">
+                <ul>
+                    <li>Temps de préparation : {{ recipe.preparationTime|date('H:i') }}</li>
+                    <li>Temps de cuisson : {{ recipe.bakingTime|date('H:i') }}</li>
+                </ul>
                 <p>
                     {# TODO: afficher la liste des étapes #}                </p>
             </div>
