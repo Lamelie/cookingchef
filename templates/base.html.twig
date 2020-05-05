@@ -14,7 +14,7 @@
 
         <nav class="main-menu">
 
-            <a href="index.html">
+            <a href="{{ path('homepage')}}">
                 <img src="{{ asset('build/images/logo-small.png') }}" alt="Cooking Chef" class="logo-nav">
             </a>
 
@@ -28,7 +28,9 @@
 
         <div class="container">
             <div class="logo-home">
-                <img src="{{ asset('build/images/logo.png') }}" alt="Cooking Chef">
+                <a href="{{ path('homepage')}}">
+                    <img src="{{ asset('build/images/logo.png') }}" alt="Cooking Chef">
+                </a>
             </div>
             <form>
                 <input type="text" placeholder="Recette">
