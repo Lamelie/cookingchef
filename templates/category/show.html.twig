@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {{ category.label }}
+{% endblock %}
+
+{% block headerTitle %}{{ category.label }}{% endblock %}
+
+{% block body %}
+
+    <main class="container">
+        <h2>{{ category.recipes|length }} recettes dans la catégorie "{{ category.label }}"</h2>
+
+        <section class="row recipes">
+            {% for recipe in category.recipes %}
+            <div class="col-md-4">
+                {% include 'recipe/_card.html.twig' with {'recipe': recipe} only  %}
+
+            </div>
+            {% endfor %}
+
+        </section>
+    </main>
+
+{% endblock %}

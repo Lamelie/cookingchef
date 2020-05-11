@@ -2,6 +2,9 @@
 
 {% block title %}{{ parent() }} - {{ recipe.title }}{% endblock %}
 
+{% block headerImage %}{{asset('uploads/'~recipe.picture)}}{% endblock %}
+{% block headerTitle %}{{ recipe.title }}{% endblock %}
+
 {% block body %}
 
     <main class="container">
@@ -12,24 +15,34 @@
                 <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 42</div>
                 <div class="label"><i class="fa fa-cutlery"></i> {{ recipe.category.label }}</div>
                 <div class="label"><i class="fa fa-user"></i> Etienne H.</div>
+                <div> {# TODO : liste des tags #}</div>
             </div>
             <div class="col-md-4">
+                <h2>Temps requis</h2>
                 <ul>
-                    <li>Temps de préparation : {{ recipe.preparationTime|date('H:i') }}</li>
-                    <li>Temps de cuisson : {{ recipe.bakingTime|date('H:i') }}</li>
+                    <li>Temps de préparation : {{ recipe.preparationTimeFormat }}</li>
+                    <li>Temps de cuisson : {{ recipe.bakingTimeFormatted}}</li>
                 </ul>
-                <p>
-                    {# TODO: afficher la liste des étapes #}                </p>
+                <h2>Etapes de préparation</h2>
+                <ul>
+                    {% for step in recipe.steps %}
+                    <li>
+                        <b>Etape {{ step.number }}</b>
+                        <p>{{ step.description }}</p>
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
             </div>
             <div class="col-md-4">
                 <h2>Ingrédients</h2>
 
-                {# TODO : afficher la liste des ingrédients#}
-
                 <ul>
-                    <li>Poulet (2 blancs de poulet)</li>
-                    <li>Ciboulette (2 brins)</li>
-                    <li>Soja (20 cl)</li>
+                    {% for recipeIngredient in recipe.recipeIngredients  %}
+                        <li>{{ recipeIngredient.ingredient.label }} : {{ recipeIngredient.quantity }}{{ recipeIngredient.unit.label }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>

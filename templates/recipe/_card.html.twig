@@ -1,0 +1,16 @@
+<article>
+    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+        <img src="{{ asset('uploads/' ~ recipe.picture) }}" alt="{{ recipe.title }}" class="img-responsive">
+    </a>
+    <h2><a href="{{ path('recipe_show', {'id': recipe.id}) }}">{{ recipe.title }}</a></h2>
+    <footer>
+        <div class="label"><a href="#" class="like"><i class="fa fa-heart"></i></a> 12</div>
+        <div class="label">
+            <i class="fa fa-cutlery"></i>
+            <a href="{{ path('category_show', {'slug': recipe.category.slug}) }}">
+                {{ recipe.category.label }}
+            </a>
+        </div>
+        <div class="label"><i class="fa fa-user"></i> François P.</div>
+    </footer>
+</article>

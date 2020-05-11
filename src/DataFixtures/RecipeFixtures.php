@@ -22,6 +22,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $cookie->addTag($this->getReference("tag-sansglucose"));
         $cookie->addTag($this->getReference("tag-sanslactose"));
         $manager->persist($cookie);
+        $this->addReference("rec-cookie", $cookie);
 
         $crumble = new Recipe();
         $crumble->setTitle("Crumble");
@@ -34,6 +35,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $crumble->addTag($this->getReference("tag-vege"));
         $crumble->addTag($this->getReference("tag-sanslactose"));
         $manager->persist($crumble);
+        $this->addReference("rec-crumble", $crumble);
 
         $lasagne = new Recipe();
         $lasagne->setTitle("Lasagne");
@@ -45,6 +47,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $lasagne->setDifficulty($this->getReference("diff-difficile"));
         $lasagne->addTag($this->getReference("tag-sanslactose"));
         $manager->persist($lasagne);
+        $this->addReference("rec-lasagne", $lasagne);
 
 
         $manager->flush();

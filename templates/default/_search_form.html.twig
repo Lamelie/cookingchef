@@ -1,0 +1,11 @@
+<form>
+    <input type="text" placeholder="Recette">
+    <select>
+        <option disabled selected>Catégorie</option>
+        {% for category in categories %}
+            <option value="{{ category.slug }}">{{ category.label }}</option>
+
+        {% endfor %}
+    </select>
+    <input type="submit" value="Rechercher">
+</form>

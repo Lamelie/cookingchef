@@ -2,54 +2,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Cooking chef {% endblock %}</title>
+    <title>{% block title %}Cooking Chef{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
 
-<header class="header-top header-home">
-    <div class="overlay">
+{% block header %}
+    <header class="header-top" style="background-image: url('{% block headerImage %}{{ asset('build/images/header-background-2.jpg') }}{% endblock %}');">
 
-        <nav class="main-menu">
+        {% include 'default/_menu.html.twig' %}
 
-            <a href="{{ path('homepage')}}">
-                <img src="{{ asset('build/images/logo-small.png') }}" alt="Cooking Chef" class="logo-nav">
-            </a>
-
-            <ul>
-                <li><a href="#"><i class="fa fa-cutlery"></i> Recettes</a></li>
-                <li><a href="#"><i class="fa fa-video-camera"></i> Vidéos</a></li>
-                <li><a href="#"><i class="fa fa-sign-in"></i> Log in</a></li>
-            </ul>
-        </nav>
-
-
-        <div class="container">
-            <div class="logo-home">
-                <a href="{{ path('homepage')}}">
-                    <img src="{{ asset('build/images/logo.png') }}" alt="Cooking Chef">
-                </a>
+        <div class="overlay">
+            <div class="container">
+                <h1>{% block headerTitle %}{% endblock %}</h1>
             </div>
-            <form>
-                <input type="text" placeholder="Recette">
-                <select>
-                    <option disabled selected>Catégorie</option>
-                    <option>Entrée</option>
-                    <option>Plat</option>
-                    <option>Dessert</option>
-                </select>
-                <input type="submit" value="Rechercher">
-            </form>
-            <p>Cooking chef est le site internet pour Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Veritatis fugit, quae veniam culpa nam harum sed qui, libero obcaecati enim praesentium est id
-                consequatur voluptatem doloribus perspiciatis saepe ratione at!</p>
         </div>
 
-    </div>
-
-</header>
+    </header>
+{% endblock %}
 
 {% block body %}{% endblock %}
 

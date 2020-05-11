@@ -111,6 +111,11 @@ class Recipe
         return $this->preparationTime;
     }
 
+    public function getPreparationTimeFormat() : string {
+
+        return $this->formatTime($this->getPreparationTime());
+    }
+
     public function setPreparationTime(\DateTimeInterface $preparationTime): self
     {
         $this->preparationTime = $preparationTime;
@@ -121,6 +126,11 @@ class Recipe
     public function getBakingTime(): ?\DateTimeInterface
     {
         return $this->bakingTime;
+    }
+
+    public function getBakingTimeFormatted(): string
+    {
+        return $this->formatTime($this->getBakingTime());
     }
 
     public function setBakingTime(\DateTimeInterface $bakingTime): self
@@ -314,5 +324,23 @@ class Recipe
      */
     public function prePersist() {
         $this->setCreatedAt(new \DateTime());
+    }
+
+
+    private function formatTime(\DateTimeInterface $time): string
+    {
+        $hours = $time->format("G");
+        $minutes = $time->format("i");
+        $formattedTime = "";
+
+        if ($hours > 0) {
+            $formattedTime = "$hours heure" . (($hours > 1) ? "s" : "");
+        }
+        $formattedTime .= " ";
+        if ($minutes > 0) {
+            $formattedTime .= "$minutes minute" . (($minutes > 1) ? "s" : "");
+        }
+
+        return trim($formattedTime);
     }
 }
