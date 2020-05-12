@@ -21,6 +21,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $cookie->setDifficulty($this->getReference("diff-facile"));
         $cookie->addTag($this->getReference("tag-sansglucose"));
         $cookie->addTag($this->getReference("tag-sanslactose"));
+        $cookie->setUser($this->getReference("user-admin"));
         $manager->persist($cookie);
         $this->addReference("rec-cookie", $cookie);
 
@@ -34,6 +35,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $crumble->setDifficulty($this->getReference("diff-facile"));
         $crumble->addTag($this->getReference("tag-vege"));
         $crumble->addTag($this->getReference("tag-sanslactose"));
+        $crumble->setUser($this->getReference("user-admin"));
         $manager->persist($crumble);
         $this->addReference("rec-crumble", $crumble);
 
@@ -46,6 +48,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $lasagne->setCategory($this->getReference("cat-plat"));
         $lasagne->setDifficulty($this->getReference("diff-difficile"));
         $lasagne->addTag($this->getReference("tag-sanslactose"));
+        $lasagne->setUser($this->getReference("user-jdupont"));
         $manager->persist($lasagne);
         $this->addReference("rec-lasagne", $lasagne);
 
@@ -55,6 +58,10 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [TagFixtures::class, CategoryFixtures::class, DifficultyFixtures::class];
+        return [
+            TagFixtures::class,
+            CategoryFixtures::class,
+            DifficultyFixtures::class,
+            UserFixtures::class];
     }
 }
