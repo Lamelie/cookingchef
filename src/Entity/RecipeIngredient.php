@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Ingredient;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
