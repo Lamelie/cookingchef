@@ -83,12 +83,24 @@ class Recipe
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Recipes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Feedback", mappedBy="recipe", orphanRemoval=true)
+     */
+    private $feedbacks;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->recipeIngredients = new ArrayCollection();
         $this->photos = new ArrayCollection();
         $this->steps = new ArrayCollection();
+        $this->feedbacks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -344,5 +356,48 @@ class Recipe
         }
 
         return trim($formattedTime);
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Feedback[]
+     */
+    public function getFeedbacks(): Collection
+    {
+        return $this->feedbacks;
+    }
+
+    public function addFeedback(Feedback $feedback): self
+    {
+        if (!$this->feedbacks->contains($feedback)) {
+            $this->feedbacks[] = $feedback;
+            $feedback->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeedback(Feedback $feedback): self
+    {
+        if ($this->feedbacks->contains($feedback)) {
+            $this->feedbacks->removeElement($feedback);
+            // set the owning side to null (unless already changed)
+            if ($feedback->getRecipe() === $this) {
+                $feedback->setRecipe(null);
+            }
+        }
+
+        return $this;
     }
 }
