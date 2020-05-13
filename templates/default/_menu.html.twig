@@ -3,7 +3,9 @@
         <img src="{{ asset('build/images/logo-small.png') }}" alt="Cooking Chef" class="logo-nav">
     </a>
     <ul>
-        <li><a href="{{ path('recipe_new') }}"><i class="fa fa-plus"></i> Nouvelle recette</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('recipe_new') }}"><i class="fa fa-plus"></i> Nouvelle recette</a></li>
+        {% endif %}
         <li><a href="#"><i class="fa fa-cutlery"></i> Recettes</a></li>
         <li><a href="#"><i class="fa fa-video-camera"></i> Vidéos</a></li>
         {% if app.user %}
@@ -11,6 +13,7 @@
 
         {% else %}
                 <li><a href="{{ path('app_login') }}"><i class="fa fa-sign-in"></i> Log in</a></li>
+                <li><a href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'enregistrer</a></li>
         {% endif %}
     </ul>
 </nav>

@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use App\Service\FileUploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,7 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/new", name="recipe_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request, FileUploader $fileUploader): Response
     {
@@ -44,6 +46,7 @@ class RecipeController extends AbstractController
                 $recipe->setPicture($pictureFilename);
             }
             $entityManager = $this->getDoctrine()->getManager();
+            $recipe->setUser($this->getUser());
             $entityManager->persist($recipe);
             $entityManager->flush();
 
@@ -68,9 +71,14 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="recipe_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Recipe $recipe): Response
     {
+        if (!$this->isGranted("ROLE_ADMIN") && $this->getUser() !== $recipe->getUser()) {
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier cette recette");
+        }
+
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -88,6 +96,7 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/{id}", name="recipe_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Recipe $recipe): Response
     {
