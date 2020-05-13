@@ -79,4 +79,9 @@ class Step
         $this->description = $description;
     }
 
+    public function __toString()
+    {
+        return "# " . $this->getNumber() . " " . $this->getDescription();
+    }
+
 }

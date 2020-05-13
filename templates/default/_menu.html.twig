@@ -9,11 +9,13 @@
         <li><a href="#"><i class="fa fa-cutlery"></i> Recettes</a></li>
         <li><a href="#"><i class="fa fa-video-camera"></i> Vidéos</a></li>
         {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('easyadmin') }}"><i class="fa fa-dashboard"></i> admin</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i> Log out</a></li>
-
         {% else %}
-                <li><a href="{{ path('app_login') }}"><i class="fa fa-sign-in"></i> Log in</a></li>
-                <li><a href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'enregistrer</a></li>
+            <li><a href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'enregistrer</a></li>
+            <li><a href="{{ path('app_login') }}"><i class="fa fa-sign-in"></i> Log in</a></li>
         {% endif %}
     </ul>
 </nav>

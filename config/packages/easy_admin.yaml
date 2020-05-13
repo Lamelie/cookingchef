@@ -1,13 +1,31 @@
 easy_admin:
     entities:
         # List the entity class name you want to manage
-#        - App\Entity\Product
-        - App\Entity\Recipe
-        - App\Entity\Step
-        - App\Entity\Category
-        - App\Entity\Difficulty
-        - App\Entity\Tag
-        - App\Entity\Unit
-        - App\Entity\Ingredient
-        - App\Entity\Photo
-        - App\Entity\User
+        Recipe:
+            class: App\Entity\Recipe
+            image_base_path: '%uploads_url%'
+            list:
+                fields:
+                    - 'title'
+                    - { property: 'picture', type: 'image' }
+            form:
+                fields:
+                    - 'title'
+                    - 'preparationTime'
+                    - 'bakingTime'
+                    - 'nbPersons'
+                    - 'category'
+                    - 'tags'
+                    - { property: 'picture', type: 'file_upload', type_options: { upload_dir: 'public/uploads/', download_path: '%uploads_url%' } }
+                    - 'difficulty'
+                    - 'recipeIngredients'
+                    - 'photos'
+                    - 'user'
+        Category:
+            class: App\Entity\Category
+            form:
+                fields:
+                    - 'label'
+            edit:
+                fields:
+                    - 'slug'
